@@ -1,0 +1,3 @@
+class BaseFailure {
+  BaseFailure.none();
+}
