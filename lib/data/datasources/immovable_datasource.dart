@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:pilar_app/data/models/immovable.dart';
 import 'package:pilar_app/infra/failures/base_failure.dart';
+import 'package:pilar_app/presentation/utils/text.dart';
 
 abstract interface class ImmovableDatasource {
   Future<(BaseFailure, List<ImmovableProperty>)> fetchAll();
@@ -30,12 +31,13 @@ class ImmovableDatasourceImpl implements ImmovableDatasource {
   Future<(BaseFailure, List<ImmovableProperty>)> search(String pattern) async {
     final String mock = await rootBundle.loadString(_path);
     final list = ImmovableProperty.fromList(jsonDecode(mock.replaceAll('\n', '')));
+    pattern = pattern.toUpperCase().normalize();
 
-    List<ImmovableProperty> immovablePropertyList = ImmovableProperty.fromList(list);
-    List<ImmovableProperty> resultList = immovablePropertyList
-        .where(
-          (element) => element.address == pattern || element.city == pattern || element.building == pattern,
-        )
+    List<ImmovableProperty> resultList = list
+        .where((element) => element.address!.toUpperCase().normalize().contains(pattern) //|| //
+            // element.city?.toUpperCase().normalize() == pattern || //
+            // element.building?.toUpperCase().normalize() == pattern,
+            )
         .toList();
 
     return (BaseFailure.none(), resultList);

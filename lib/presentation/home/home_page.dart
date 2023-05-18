@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pilar_app/presentation/home/home_cubit.dart';
-import 'package:pilar_app/presentation/home/widgets/immovable_item.dart';
+import 'package:pilar_app/presentation/home/widgets/custom_grid.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,8 +16,8 @@ class _HomePageState extends State<HomePage> {
   String? dropdownvalue;
 
   var items = [
-    'Mais Caros',
-    'Menos Caros',
+    'Mais caros',
+    'Mais baratos',
   ];
 
   @override
@@ -60,11 +58,42 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 35, right: 35),
+            padding: const EdgeInsets.only(left: 35, right: 35, top: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Flexible(
+                  flex: 4,
+                  child: SizedBox(
+                    height: 50,
+                    child: TextField(
+                      maxLines: 1,
+                      textAlignVertical: TextAlignVertical.center,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.only(left: 10),
+                        suffixIcon: const Icon(Icons.search),
+                        hintText: 'Pesquisar',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: Colors.black12,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        cubit.searchImmovables(value);
+                      },
+                    ),
+                  ),
+                ),
+                const Spacer(),
                 DropdownButton(
+                  underline: const SizedBox(
+                    height: 0,
+                    child: Divider(
+                      color: Colors.black38,
+                    ),
+                  ),
                   value: dropdownvalue,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   items: items.map((String items) {
@@ -91,35 +120,11 @@ class _HomePageState extends State<HomePage> {
                   );
 
                 case HomeSuccessState:
-                  final current = state as HomeSuccessState;
-                  final radom = Random();
+                  return Expanded(child: CustomGrid(list: cubit.loadedImmovables));
 
-                  return Expanded(
-                    child: GridView.builder(
-                        padding: const EdgeInsets.all(25),
-                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 200,
-                          childAspectRatio: 1,
-                          crossAxisSpacing: 30,
-                          mainAxisSpacing: 15,
-                          mainAxisExtent: 220,
-                        ),
-                        itemCount: current.list.length,
-                        itemBuilder: (context, index) {
-                          final maxRandom = current.list[index].images!.length;
-
-                          return ImmovableItem(
-                            address: current.list[index].address,
-                            number: int.parse(current.list[index].number!),
-                            imageProvider: current.list[index].images![radom.nextInt(maxRandom)].url!,
-                            price: current.list[index].askingPrice?.toDouble(),
-                            type: current.list[index].propertyType,
-                            bedrooms: current.list[index].bedrooms?.toInt() ?? 0,
-                            suites: current.list[index].suites?.toInt() ?? 0,
-                            parkingSpots: current.list[index].parkingSpots?.toInt() ?? 0,
-                          );
-                        }),
-                  );
+                case HomeSearchState:
+                  final current = state as HomeSearchState;
+                  return Expanded(child: CustomGrid(list: current.list));
 
                 default:
                   return const SizedBox.shrink();

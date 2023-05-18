@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pilar_app/presentation/utils/currency.dart';
+import 'package:pilar_app/presentation/utils/text.dart';
 
 class ImmovableItem extends StatelessWidget {
   final String? address;
