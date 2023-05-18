@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pilar_app/data/datasources/immovable_datasource.dart';
 import 'package:pilar_app/data/repositories/immovable_repository_impl.dart';
+import 'package:pilar_app/data/usecases/decending_by_price_immovable_usecase_impl.dart';
 import 'package:pilar_app/data/usecases/get_immovable_usecase_impl.dart';
 import 'package:pilar_app/data/usecases/search_immovable_usecase_impl.dart';
 import 'package:pilar_app/domain/repositories/immovable_repository.dart';
@@ -26,6 +27,9 @@ class PilarApp extends StatelessWidget {
           repository: context.read<ImmovableRepository>(),
         ),
         searchImmovableUseCase: SearchImmovableUseCaseImpl(
+          repository: context.read<ImmovableRepository>(),
+        ),
+        decendingByPriceImmovableUseCase: DecendingByPriceImmovableUseCaseImpl(
           repository: context.read<ImmovableRepository>(),
         ),
       ),
