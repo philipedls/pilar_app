@@ -50,7 +50,7 @@ class ImmovableItem extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  address ?? '',
+                  '$address, $number',
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

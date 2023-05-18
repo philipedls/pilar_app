@@ -60,9 +60,9 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 35),
+            padding: const EdgeInsets.only(left: 35, right: 35),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DropdownButton(
                   value: dropdownvalue,
