@@ -1,3 +1,9 @@
+enum FaituleType { none, http }
+
 class BaseFailure {
-  BaseFailure.none();
+  final FaituleType faituleType;
+
+  BaseFailure({required this.faituleType});
+
+  BaseFailure.none() : faituleType = FaituleType.none;
 }
