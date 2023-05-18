@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pilar_app/presentation/utils/currency.dart';
+import 'package:pilar_app/presentation/utils/text.dart';
 
 class ImmovableItem extends StatelessWidget {
   final String? address;
@@ -31,18 +31,26 @@ class ImmovableItem extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: [
-          Image.network(
-            imageProvider,
+          Container(
             height: 100,
             width: double.maxFinite,
-            fit: BoxFit.fill,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8),
+                topLeft: Radius.circular(8),
+              ),
+              image: DecorationImage(
+                image: NetworkImage(imageProvider),
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Text(
-                  address ?? '',
+                  '$address, $number',
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
