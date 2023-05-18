@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:pilar_app/data/models/immovable.dart';
 import 'package:pilar_app/infra/failures/base_failure.dart';
 
@@ -10,21 +10,22 @@ abstract interface class ImmovableDatasource {
 }
 
 class ImmovableDatasourceImpl implements ImmovableDatasource {
-  final String _filePath = 'assets/properties.json';
+  final String _path = 'assets/properties.json';
+
   @override
   Future<(BaseFailure, List<ImmovableProperty>)> fetchAll() async {
-    File mockFile = File(_filePath);
-    String mock = await mockFile.readAsString();
+    final String mock = await rootBundle.loadString(_path);
+    final list = ImmovableProperty.fromList(jsonDecode(mock.replaceAll('\n', '')));
 
-    return (BaseFailure.none(), ImmovableProperty.fromList(json.decode(mock)));
+    return (BaseFailure.none(), list);
   }
 
   @override
   Future<(BaseFailure, List<ImmovableProperty>)> search(String pattern) async {
-    File mockFile = File(_filePath);
-    String mock = await mockFile.readAsString();
+    final String mock = await rootBundle.loadString(_path);
+    final list = ImmovableProperty.fromList(jsonDecode(mock.replaceAll('\n', '')));
 
-    List<ImmovableProperty> immovablePropertyList = ImmovableProperty.fromList(json.decode(mock));
+    List<ImmovableProperty> immovablePropertyList = ImmovableProperty.fromList(list);
     List<ImmovableProperty> resultList = immovablePropertyList
         .where(
           (element) => element.address == pattern || element.city == pattern || element.building == pattern,
