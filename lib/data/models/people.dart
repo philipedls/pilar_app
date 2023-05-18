@@ -2,7 +2,7 @@ class People {
   String? name;
   String? email;
   String? phone;
-  double? commission;
+  num? commission;
   String? role;
 
   People({this.name, this.email, this.phone, this.commission, this.role});
@@ -11,7 +11,7 @@ class People {
     name = json['name'];
     email = json['email'];
     phone = json['phone'];
-    commission = json['commission'];
+    commission = json['commission'] ?? 0.0;
     role = json['role'];
   }
 
