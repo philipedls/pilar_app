@@ -4,4 +4,5 @@ import 'package:pilar_app/infra/failures/base_failure.dart';
 abstract interface class ImmovableRepository {
   Future<(BaseFailure, List<ImmovableProperty>)> fetch();
   Future<(BaseFailure, List<ImmovableProperty>)> search(String pattern);
+  Future<(BaseFailure, List<ImmovableProperty>)> orderByPrice(bool flag);
 }

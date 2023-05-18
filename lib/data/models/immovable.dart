@@ -14,21 +14,21 @@ class ImmovableProperty {
   String? city;
   String? state;
   String? zipcode;
-  double? lat;
-  double? lng;
-  int? bedrooms;
-  int? suites;
-  int? bathrooms;
-  int? parkingSpots;
-  int? area;
-  int? totalArea;
-  int? condoFee;
-  int? tax;
-  int? askingPrice;
-  int? rentPrice;
+  num? lat;
+  num? lng;
+  num? bedrooms;
+  num? suites;
+  num? bathrooms;
+  num? parkingSpots;
+  num? area;
+  num? totalArea;
+  num? condoFee;
+  num? tax;
+  num? askingPrice;
+  num? rentPrice;
   List<People>? people;
   String? frontdeskHours;
-  int? floor;
+  num? floor;
   String? developmentStage;
   List<String>? features;
   String? companyId;
@@ -79,13 +79,13 @@ class ImmovableProperty {
   });
 
   static List<ImmovableProperty> fromList(List<dynamic> list) {
-    List<ImmovableProperty> list = [];
+    List<ImmovableProperty> immovablePropertyList = [];
 
     for (dynamic item in list) {
-      list.add(ImmovableProperty.fromJson(item));
+      immovablePropertyList.add(ImmovableProperty.fromJson(item));
     }
 
-    return list;
+    return immovablePropertyList;
   }
 
   ImmovableProperty.fromJson(Map<String, dynamic> json) {

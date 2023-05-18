@@ -12,4 +12,7 @@ class ImmovableRepositoryImpl implements ImmovableRepository {
 
   @override
   Future<(BaseFailure, List<ImmovableProperty>)> search(String pattern) => datasource.search(pattern);
+
+  @override
+  Future<(BaseFailure, List<ImmovableProperty>)> orderByPrice(bool flag) => datasource.orderByPrice(flag);
 }
