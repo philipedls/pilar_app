@@ -31,11 +31,19 @@ class ImmovableItem extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: [
-          Image.network(
-            imageProvider,
+          Container(
             height: 100,
             width: double.maxFinite,
-            fit: BoxFit.fill,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8),
+                topLeft: Radius.circular(8),
+              ),
+              image: DecorationImage(
+                image: NetworkImage(imageProvider),
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
