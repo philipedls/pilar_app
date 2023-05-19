@@ -1,16 +1,34 @@
-# pilar_app
+# Pilar App
 
-A new Flutter project.
+This application was developed for part of a selection process
 
-## Getting Started
+<img src="https://github.com/philipedls/pilar_app/assets/15141674/f860cc10-1d41-4918-ac23-96a11c37674f"  height="600"/>
+<img src="https://github.com/philipedls/pilar_app/assets/15141674/51c96023-f5f9-455d-9a34-f3045c25ba37"  height="600"/>
 
-This project is a starting point for a Flutter application.
+## Overview
 
-A few resources to get you started if this is your first Flutter project:
+### Requirements
+* Any Operating System (ie. MacOS X, Linux, Windows)
+* Flutter SDK (3.10.1 or superior)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### How to Run
+* Inside root directory, run ```flutter pub get```
+* After, run ```flutter run```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Methodologies
+
+* Clean Architecture
+* Object Oriented Programming
+* Reactive Programming
+
+### Libraries and Tools
+
+* Flutter
+* Bloc
+* Intl
+
+---
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://github.com/philipedls/seventh_test/blob/main/LICENSE)
+
+Copyright (c) 2023 Philipe Luna!
